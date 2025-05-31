@@ -1,21 +1,21 @@
-let ramphoto;
+let img, x, y;
 
 function preload() {
-  ramphoto = loadImage("cc.png");
+  img = loadImage('pictures/cc.png');
 }
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(img.width, img.height);
   background(0);
   noStroke();
-  ramphoto.loadPixels();
-  noLoop();
+}
 
-  for (let i = 0; i < 5000; i++) {
-    let spotX = int(random(width));
-    let spotY = int(random(height));
-    let tone = ramphoto.get(spotX, spotY);
-    fill(tone[0], tone[1], tone[2], 50);
-    ellipse(spotX, spotY, 30, 30);
-  }
+function draw() {
+  background(0);
+  x = mouseX;
+  y = mouseY;
+  image(img, 0, 0);
+  let c = get(x, y);
+  fill(c);
+  ellipse(x, y, 100, 100);
 }
