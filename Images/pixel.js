@@ -1,25 +1,21 @@
-let img;
+let ramphoto;
 
 function preload() {
-  img = loadImage('pictures/cc.png');
+  ramphoto = loadImage("cc.png");
 }
 
 function setup() {
-  createCanvas(img.width, img.height);
-  noSmooth();
-  pixelDensity(1);
-}
+  createCanvas(400, 400);
+  background(0);
+  noStroke();
+  ramphoto.loadPixels();
+  noLoop();
 
-function draw() {
-  let pixelSize = 10;
-  img.loadPixels();
-
-  for (let y = 0; y < img.height; y += pixelSize) {
-    for (let x = 0; x < img.width; x += pixelSize) {
-      let c = img.get(x, y);
-      fill(c);
-      noStroke();
-      rect(x, y, pixelSize, pixelSize);
-    }
+  for (let i = 0; i < 5000; i++) {
+    let spotX = int(random(width));
+    let spotY = int(random(height));
+    let tone = ramphoto.get(spotX, spotY);
+    fill(tone[0], tone[1], tone[2], 50);
+    ellipse(spotX, spotY, 30, 30);
   }
 }
